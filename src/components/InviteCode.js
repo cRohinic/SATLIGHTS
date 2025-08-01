@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../src/logo.png'; // Make sure to have your SATLIGHTS logo in src folder
 
 const InviteCode = () => {
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const VALID_INVITE_CODE = process.env.INVITE_CODE || 'SATLIGHTS-TEST-001';
+
+  // SATLIGHTS brand colors
+  const brandColors = {
+    primary: '#2563eb',      // Vibrant blue
+    secondary: '#1e40af',    // Darker blue
+    accent: '#3b82f6',       // Light blue
+    dark: '#0f172a',         // Navy
+    light: '#f8fafc'         // Off-white
+  };
+
+  // Helper function to convert hex to RGB values
+  const hexToRgb = (hex) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `${r}, ${g}, ${b}`;
+  };
 
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -16,8 +34,7 @@ const InviteCode = () => {
 
     if (code.trim().toUpperCase() === VALID_INVITE_CODE) {
       setSuccess(true);
-      navigate('/form')
-      console.log('Success! Redirecting to form...');
+      navigate('/form');
     } else {
       setError('Invalid invite code. Please check and try again.');
       setIsLoading(false);
@@ -33,14 +50,33 @@ const InviteCode = () => {
   const styles = {
     container: {
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #000000 0%, #0a0a2a 30%, #1a1a4a 70%, #2a2a7a 100%)',
+      background: `linear-gradient(135deg, ${brandColors.dark} 0%, #1e293b 100%)`,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       padding: '20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       position: 'relative',
       overflow: 'hidden'
+    },
+    logoContainer: {
+      position: 'absolute',
+      top: '32px',
+      left: '32px',
+      zIndex: 20,
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px'
+    },
+    logo: {
+      height: '36px',
+      width: 'auto'
+    },
+    companyName: {
+      color: brandColors.light,
+      fontSize: '20px',
+      fontWeight: '700',
+      letterSpacing: '0.5px'
     },
     backgroundElement1: {
       position: 'absolute',
@@ -48,7 +84,7 @@ const InviteCode = () => {
       right: '-160px',
       width: '320px',
       height: '320px',
-      background: 'rgba(0, 100, 255, 0.1)',
+      background: `rgba(${hexToRgb(brandColors.primary)}, 0.1)`,
       borderRadius: '50%',
       filter: 'blur(40px)',
       animation: 'pulse 4s ease-in-out infinite'
@@ -59,18 +95,18 @@ const InviteCode = () => {
       left: '-160px',
       width: '320px',
       height: '320px',
-      background: 'rgba(0, 50, 150, 0.1)',
+      background: `rgba(${hexToRgb(brandColors.secondary)}, 0.1)`,
       borderRadius: '50%',
       filter: 'blur(40px)',
       animation: 'pulse 4s ease-in-out infinite 2s'
     },
     card: {
-      background: 'rgba(0, 0, 0, 0.7)',
+      background: 'rgba(15, 23, 42, 0.8)',
       backdropFilter: 'blur(20px)',
       borderRadius: '24px',
       padding: '48px',
-      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-      border: '1px solid rgba(100, 149, 237, 0.3)',
+      boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.5)`,
+      border: `1px solid ${brandColors.primary}33`,
       width: '100%',
       maxWidth: '480px',
       position: 'relative',
@@ -83,27 +119,27 @@ const InviteCode = () => {
       justifyContent: 'center',
       width: '64px',
       height: '64px',
-      background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
+      background: `linear-gradient(135deg, ${brandColors.secondary} 0%, ${brandColors.primary} 100%)`,
       borderRadius: '16px',
       marginBottom: '24px',
-      boxShadow: '0 10px 20px rgba(0, 100, 255, 0.3)'
+      boxShadow: `0 10px 20px ${brandColors.primary}33`
     },
     title: {
       fontSize: '28px',
       fontWeight: '700',
-      color: '#ffffff',
+      color: brandColors.light,
       marginBottom: '12px',
       lineHeight: '1.3',
       textAlign: 'center'
     },
     gradientText: {
-      background: 'linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)',
+      background: `linear-gradient(135deg, ${brandColors.primary} 0%, ${brandColors.accent} 100%)`,
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text'
     },
     subtitle: {
-      color: '#a5b4fc',
+      color: '#94a3b8',
       fontSize: '16px',
       textAlign: 'center',
       marginBottom: '32px'
@@ -117,25 +153,25 @@ const InviteCode = () => {
       padding: '16px 50px 16px 16px',
       fontSize: '18px',
       background: 'rgba(30, 41, 59, 0.5)',
-      border: '2px solid #1e40af',
+      border: `2px solid ${brandColors.secondary}`,
       borderRadius: '12px',
       outline: 'none',
       transition: 'all 0.3s ease',
       letterSpacing: '0.05em',
       boxSizing: 'border-box',
-      color: '#ffffff'
+      color: brandColors.light
     },
     inputFocused: {
-      borderColor: '#3b82f6',
+      borderColor: brandColors.primary,
       background: 'rgba(30, 64, 175, 0.5)',
-      boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.3)'
+      boxShadow: `0 0 0 3px ${brandColors.primary}33`
     },
     inputIcon: {
       position: 'absolute',
       right: '16px',
       top: '50%',
       transform: 'translateY(-50%)',
-      color: '#a5b4fc',
+      color: '#94a3b8',
       width: '20px',
       height: '20px'
     },
@@ -156,8 +192,8 @@ const InviteCode = () => {
     button: {
       width: '100%',
       padding: '16px 24px',
-      background: success ? '#10b981' : 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
-      color: 'white',
+      background: success ? '#10b981' : `linear-gradient(135deg, ${brandColors.secondary} 0%, ${brandColors.primary} 100%)`,
+      color: brandColors.light,
       border: 'none',
       borderRadius: '12px',
       fontSize: '16px',
@@ -168,11 +204,11 @@ const InviteCode = () => {
       overflow: 'hidden',
       opacity: (!code.trim() || isLoading) ? 0.6 : 1,
       transform: 'scale(1)',
-      boxShadow: '0 10px 20px rgba(0, 100, 255, 0.3)'
+      boxShadow: `0 10px 20px ${brandColors.primary}33`
     },
     buttonHover: {
       transform: 'scale(1.02)',
-      boxShadow: '0 15px 30px rgba(0, 100, 255, 0.5)'
+      boxShadow: `0 15px 30px ${brandColors.primary}4D`
     },
     buttonContent: {
       display: 'flex',
@@ -193,30 +229,9 @@ const InviteCode = () => {
     dot: {
       width: '8px',
       height: '8px',
-      background: 'white',
+      background: brandColors.light,
       borderRadius: '50%',
       animation: 'bounce 1.4s ease-in-out infinite both'
-    },
-    footer: {
-      textAlign: 'center',
-      marginTop: '32px',
-      fontSize: '14px',
-      color: '#a5b4fc'
-    },
-    link: {
-      color: '#3b82f6',
-      textDecoration: 'none',
-      fontWeight: '500',
-      transition: 'color 0.2s ease'
-    },
-    devInfo: {
-      marginTop: '16px',
-      padding: '12px',
-      background: '#1e3a8a',
-      border: '1px solid #3b82f6',
-      borderRadius: '8px',
-      fontSize: '14px',
-      color: '#ffffff'
     }
   };
 
@@ -257,25 +272,29 @@ const InviteCode = () => {
       </style>
       
       <div style={styles.container}>
+        {/* SATLIGHTS Logo and Name */}
+        <div style={styles.logoContainer}>
+          <img src={logo} alt="SATLIGHTS" style={styles.logo} />
+          <div style={styles.companyName}>SATLIGHTS</div>
+        </div>
+
         <div style={styles.backgroundElement1}></div>
         <div style={styles.backgroundElement2}></div>
         
         <div style={styles.card}>
-          {/* Header */}
           <div style={{ textAlign: 'center' }}>
             <div style={styles.iconContainer}>
               <svg width="32" height="32" fill="white" viewBox="0 0 24 24">
                 <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.1 7 14 7.9 14 9S13.1 11 12 11 10 10.1 10 9 10.9 7 12 7ZM12 17C10.43 17 8.86 16.46 7.5 15.4C7.5 13.93 10.5 13.15 12 13.15S16.5 13.93 16.5 15.4C15.14 16.46 13.57 17 12 17Z"/>
               </svg>
             </div>
-            <h1 style={styles.title}>
+             <h1 style={styles.title}>
               Tell us your story —<br />
               <span style={styles.gradientText}>no deck needed</span>
             </h1>
-            <p style={styles.subtitle}>Just be real. Enter your invite code to begin.</p>
+            <p style={styles.subtitle}>Enter your exclusive invite code to begin</p>
           </div>
 
-          {/* Form */}
           <div>
             <div style={styles.inputContainer}>
               <input
@@ -293,14 +312,14 @@ const InviteCode = () => {
                 }}
               />
               <svg style={styles.inputIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v-2H7v-2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v-2H7v-2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
               </svg>
             </div>
 
             {error && (
               <div style={styles.errorContainer}>
                 <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
                 <span>{error}</span>
               </div>
@@ -312,21 +331,20 @@ const InviteCode = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               disabled={!code.trim() || isLoading || success}
-              className="button"
               style={{
                 ...styles.button,
                 ...(isHovered && !isLoading && code.trim() ? styles.buttonHover : {})
               }}
             >
               <span style={styles.buttonContent}>
-                <span>{success ? 'Success!' : 'Continue'}</span>
+                <span>{success ? 'Access Granted' : 'Continue'}</span>
                 {success ? (
                   <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="5 13l4 4L19 7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                   </svg>
                 ) : (
                   <svg className="arrow-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="13 7l5 5m0 0l-5 5m5-5H6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 )}
               </span>
