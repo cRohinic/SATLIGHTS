@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 const VideoForm = () => {
   const [answers, setAnswers] = useState({
@@ -20,6 +21,7 @@ const VideoForm = () => {
   const [currentMessage, setCurrentMessage] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate=useNavigate();
 
   const aiMessages = [
     "Hi there! I'm Nova, your AI guide at Satlights. I'm here to help you share your founder story.",
@@ -63,8 +65,7 @@ const VideoForm = () => {
     };
     
     try {
-      // Replace with your actual Google Apps Script URL
-      const scriptUrl = 'https://script.google.com/macros/s/J0kEPtJIf9BYyORnWkORWUHmcQBqdkgnAOwY3dTY2s/exec';
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbxg9Q8CaeHu3dgY3V5GxZyvdSpWPaSTtnK8xxFVuhNdfpyp48lbTOaVmv_XN55BHgFR/exec';
       
       await fetch(scriptUrl, {
         method: 'POST',
@@ -75,7 +76,7 @@ const VideoForm = () => {
         body: JSON.stringify(submissionData)
       });
 
-      alert('Thank you! Your founder story has been submitted successfully. We\'ll review it and get back to you within 5 business days.');
+      navigate('/thank-you');
       
       // Reset form after successful submission
       setAnswers({
