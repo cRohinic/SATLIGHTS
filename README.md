@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+#  Satlights Founder Intake MVP (Invite-Only)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a trust-focused, invite-only, founder-facing intake MVP built for SATELIGHTS.
 
-## Available Scripts
+It helps founders record their video answers, provide written responses to key startup questions, and submit everything seamlessly via a warm and personal web interface.
 
-In the project directory, you can run:
+## Features Implemented
 
-### `npm start`
+- 🔒 **Invite Code Access**  
+  Only founders with a valid code (e.g., `SATLIGHTS-TEST-001`) can access the form.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🎥 **Live Video Recording using VideoAsk**  
+  Founders can directly record videos in the form using embedded **VideoAsk** (no uploads required).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 📝 **Written Question Answers**  
+  Founders provide responses to 8 thoughtfully designed startup-related questions.
 
-### `npm test`
+- 📥 **Data Storage**  
+  All responses are stored in a connected **Google Sheet**/**Airtable** for easy review.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 📱 **Responsive and Mobile-Friendly UI**  
+  Built with mobile-first design using React and CSS.
 
-### `npm run build`
+- ✨ **Warm, Trust-Building UI**  
+  Minimal, encouraging, startup-friendly tone with branding and thank-you flow.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 💡 Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Frontend**: React (Vite)
+- **CSS**: Custom CSS (optional: Tailwind or Bootstrap)
+- **Video Recorder**: [VideoAsk](https://www.videoask.com/)
+- **Storage**: Google Sheets or Airtable via API / Webhook
+- **Deployment**: Vercel
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧪 How It Works
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. User visits the site and sees an invite-only access field.
+2. After entering the correct invite code (`SATLIGHTS-TEST-001`), the full form is revealed.
+3. The form includes:
+   - A VideoAsk embedded video recorder
+   - 8 long-form written question fields
+4. When submitted, the data is stored in Google Sheets or Airtable:
+   - Invite code
+   - Timestamp
+   - Founder name, email, startup
+   - Video response link
+   - All 8 question responses
+5. On submission, the user sees a thank-you message:
+   > _"Thanks for applying — we’ll reach out after reviewing your story."_
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔗 Deployment
+[
+> Live Site: [https://your-deployment-url.vercel.app](https://your-deployment-url.vercel.app](https://satlights-latest.vercel.app/))
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🔧 Setup Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/yourusername/satlights-intake-mvp.git
+cd satlights-intake-mvp
+npm install
+npm start
